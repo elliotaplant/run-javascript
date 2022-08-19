@@ -20,8 +20,8 @@
         "title": "Run JavaScript: Edit Global Scripts"
       },
       {
-        "command": "run-javascript.edit-local-scripts",
-        "title": "Run JavaScript: Edit Local Scripts"
+        "command": "run-javascript.edit-workspace-scripts",
+        "title": "Run JavaScript: Edit Workspace Scripts"
       },
       {
         "command": "run-javascript.run-script",
