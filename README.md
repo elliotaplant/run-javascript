@@ -1,65 +1,27 @@
-# run-javascript README
+# Run JavaScript
 
-This is the README for your extension "run-javascript". After writing up a brief description, we recommend including the following sections.
+A VS Code extension to run custom JavaScript files as commands in VS Code.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Create JS files that are globally or workspace scoped that have access to the `vscode` object so the scripts can interact with your editor. To create and edit your scripts, use the commands "Run JavaScript: Edit Global Scripts" (`run-javascript.edit-global-scripts`) or "Run JavaScript: Edit Workspace Scripts" (`run-javascript.edit-workspace-scripts`). This will take you to the global/workspace config folder for this extension.
 
-For example if there is an image subfolder under your extension project workspace:
+To create new scripts, simple create a JS file at the root of the global/workspace config folder and import/export that file from the `index.js` file in the config folder. Use the "hello world" commands as a guide.
 
-\!\[feature X\]\(images/feature-x.png\)
+To run your scripts from the command pallete, first run the command "Run Javascript: Run Script" and then select your script from the menu.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+To run your scripts as a keyboard shortcut, use the command name `run-javascript:yourExportInIndexJs` in your shortcut definition. For example:
 
-## Requirements
+```
+{
+  "key": "cmd+shift+i",
+  "command": "run-javascript.globalHelloWorld"
+}
+```
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+Note that the name of the command after the `.` is taken from the object exported in your `index.js` file in the global/workspace config.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+- This probably doesn't work in the web editor
+- I can't add commands directly to the command pallete because the command name has to be hard-coded into the `package.json` of this extension.
