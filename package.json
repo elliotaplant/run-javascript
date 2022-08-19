@@ -4,6 +4,7 @@
   "description": "Run jasvascript files in the VS Code context from the command pallete",
   "repository": "https://github.com/elliotaplant/run-javascript",
   "icon": "images/icon.png",
+  "publisher": "ElliotPlant",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.70.0"
