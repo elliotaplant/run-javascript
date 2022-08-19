@@ -1,16 +1,13 @@
-const fs = require('fs');
+const path = require('path');
 const vscode = require('vscode');
 const commands = require('/Users/elliot/.vscode-run-javascript/index.js');
-const {
-  copyWorkspaceExampleIfNecessary,
-  copyGlobalExampleIfNecessary,
-} = require('./copying');
+const { copyExampleIfNecessary } = require('./copying');
 
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-  copyGlobalExampleIfNecessary(context);
+  copyExampleIfNecessary(context.globalStorageUri, 'global');
   registerRunScripts(context);
   registerEditScripts(context);
   registerCustomCommands(context);
@@ -52,13 +49,11 @@ function registerEditScripts(context) {
   const globalDisposable = vscode.commands.registerCommand(
     globalCommand,
     async () => {
-      fs.writeFileSync(
-        context.globalStorageUri.fsPath + '/index.js',
-        'console.log("hello world");'
-      );
-      await vscode.workspace.updateWorkspaceFolders(0, 0, {
+      vscode.workspace.updateWorkspaceFolders(0, 0, {
         uri: context.globalStorageUri,
       });
+
+      await focusIndex(context.globalStorageUri);
     }
   );
   context.subscriptions.push(globalDisposable);
@@ -68,10 +63,11 @@ function registerEditScripts(context) {
   const localDisposable = vscode.commands.registerCommand(
     localCommand,
     async () => {
-      copyWorkspaceExampleIfNecessary(context);
+      copyExampleIfNecessary(context.storageUri, 'workspace');
       await vscode.workspace.updateWorkspaceFolders(0, 0, {
         uri: context.storageUri,
       });
+      await focusIndex(context.storageUri);
     }
   );
   context.subscriptions.push(localDisposable);
@@ -88,6 +84,13 @@ function registerCustomCommands(context) {
     );
     context.subscriptions.push(disposable);
   });
+}
+
+async function focusIndex(uri) {
+  const doc = await vscode.workspace.openTextDocument(
+    vscode.Uri.file(path.join(uri.fsPath, 'index.js'))
+  );
+  await vscode.window.showTextDocument(doc);
 }
 
 // this method is called when your extension is deactivated

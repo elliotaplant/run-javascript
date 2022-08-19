@@ -16,16 +16,16 @@
   "contributes": {
     "commands": [
       {
-        "command": "run-javascript.helloWorld",
-        "title": "Hello World"
+        "command": "run-javascript.edit-global-scripts",
+        "title": "Run JavaScript: Edit Global Scripts"
       },
       {
-        "command": "run-javascript.edit-global-scripts",
-        "title": "Edit Global Scripts"
+        "command": "run-javascript.edit-local-scripts",
+        "title": "Run JavaScript: Edit Local Scripts"
       },
       {
         "command": "run-javascript.run-script",
-        "title": "Run Script"
+        "title": "Run Javascript: Run Script"
       }
     ]
   },
