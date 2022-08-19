@@ -12,12 +12,16 @@
   "activationEvents": [
     "onStartupFinished"
   ],
-  "main": "./extension.js",
+  "main": "./src/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "run-javascript.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "run-javascript.edit-global-scripts",
+        "title": "Edit Global Scripts"
       },
       {
         "command": "run-javascript.run-script",
