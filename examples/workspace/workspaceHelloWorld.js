@@ -4,7 +4,7 @@
  * @param {vscode.ExtensionContext} context
  * @param {any[]} args
  */
-function workspaceHelloWorld(vscode, context, ...args) {
+function workspaceHelloWorld(vscode) {
   vscode.window.showInformationMessage(
     'Hello World from run-javascript in this workspace'
   );

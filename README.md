@@ -21,6 +21,26 @@ To run your scripts as a keyboard shortcut, use the command name `run-javascript
 
 Note that the name of the command after the `.` is taken from the object exported in your `index.js` file in the global/workspace config.
 
+You can also pass args to your function with keyboard shortcuts:
+
+```
+// keybindings.json
+{
+  "key": "cmd+shift+y",
+  "command": "run-javascript.someFunction",
+  "args": [
+    "arg1",
+    { "arg2Key": "arg2Value }
+  ]
+}
+
+// someFunction.js
+module.exports = function someFunction(vscode, context, arg1, arg2) {
+  console.log(arg1);
+  console.log(arg2);
+}
+```
+
 ## Known Issues
 
 - This probably doesn't work in the web editor

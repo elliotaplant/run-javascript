@@ -4,7 +4,7 @@
  * @param {vscode.ExtensionContext} context
  * @param {any[]} args
  */
-function globalHelloWorld(vscode, context, ...args) {
+function globalHelloWorld(vscode) {
   vscode.window.showInformationMessage(
     'Hello World from run-javascript in the global context'
   );
